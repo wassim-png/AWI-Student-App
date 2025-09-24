@@ -2,6 +2,9 @@
 <p>Nom : {{ student()?.firstname }} {{ student()?.name| uppercase }}</p>
 <p>inscrit le {{ student()?.inscription| date:'longDate':'':'fr-FR' }}</p>
 <p>payé {{ student()?.prix }} €</p>
-<p>Promo : {{ student()?.filiere }} {{ student()?.promo }}</p>
+<p>Promo : {{ student()?.filiere }} {{ student()?.promo }}
+@if (isFinalYear()) {
+    <span class="final-year-badge">🎓 Dernière année</span>
+}</p>
 <button (click)="remove.emit(student()?.id!)">Supprimer</button>
 

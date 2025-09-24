@@ -22,5 +22,19 @@ export class StudentCard {
     }
     return typeEleve
   }
+
+  public isFinalYear(): boolean {
+    var finalYear = false; 
+    if (this.student()) {
+      let st = this.student()!
+      if (st.promo == 5) {
+        finalYear = true;
+      }
+    }
+    return finalYear;
+  }
+
 }
+
+
   

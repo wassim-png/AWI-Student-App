@@ -1,4 +1,4 @@
-import { Component, input, output} from '@angular/core';
+import { Component, input, output, Type} from '@angular/core';
 import { UpperCasePipe, LowerCasePipe, DatePipe} from '@angular/common';
 
 @Component({
@@ -16,4 +16,21 @@ export class StudentCard {
   public prix = input<number>();
 
   public remove = output<void>();
+
+  public getType(): string {
+    const inscription = this.inscription();
+    if(!inscription) { return "" }
+    const annee = inscription.getFullYear();
+
+    if (annee < 2023) {
+      return "alumni";
+    }
+    else if (annee <= 2024) {
+      return "étudiant"
+    }
+    else {
+      return "nouvel inscrit"
+    }
+  }
+  
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { StudentCard } from '../student-card/student-card';
+import { StudentDto } from '../types/student-dto';
 
 @Component({
   selector: 'app-student-list',
@@ -8,22 +9,13 @@ import { StudentCard } from '../student-card/student-card';
   styleUrl: './student-list.css'
 })
 export class StudentList {
-  public firstname1: string = 'Wassim';
-  public name1: string = 'Ben Nacef';
-  public filiere1: string = 'DaMS';
-  public promo1: number = 4;
-  public inscription1: Date = new Date(2025, 8, 15);
-  public prix1: number = 40;
-  public hidden1: boolean = false;
+  public students: StudentDto[] = [
+    { id: 0, firstname: 'Wassim', name: 'Ben Nacef', filiere: 'DaMS', promo: 4, inscription: new Date(2022, 8, 15), prix: 40, hidden: false}, 
+    { id: 1, firstname: 'Clement', name: 'Frassier', filiere: 'DaMS', promo: 4, inscription: new Date(2024, 8, 3), prix: 630, hidden: false},
+    { id: 2, firstname: 'Syrine', name: 'Benali', filiere: 'DaMS', promo: 3, inscription: new Date(2025, 8, 5), prix: 420, hidden: false}
+  ]
 
-  public firstname2: string = 'Clement';
-  public name2: string = 'Frassier';
-  public filiere2: string = 'DaMS';
-  public promo2: number = 4;
-  public inscription2: Date = new Date(2025, 8, 3);
-  public prix2: number = 630;
-
-  public onDelete() {
-    this.hidden1 = true;
+  public onDelete(id: number) {
+    this.students[id].hidden = true;
   }
 }

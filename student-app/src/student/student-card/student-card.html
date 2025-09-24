@@ -1,0 +1,6 @@
+<p>Nom : {{ firstname() }} {{ name() | uppercase }}</p>
+<p>inscrit le {{ inscription() | date:'longDate':'':'fr-FR' }}</p>
+<p>payé {{ prix() }} €</p>
+<p>Promo : {{ filiere() }} {{ promo() }}</p>
+<button (click)="remove">Supprimer</button>
+

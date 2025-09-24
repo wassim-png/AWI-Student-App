@@ -14,6 +14,7 @@ export class StudentList {
   public promo1: number = 4;
   public inscription1: Date = new Date(2025, 8, 15);
   public prix1: number = 40;
+  public hidden1: boolean = false;
 
   public firstname2: string = 'Clement';
   public name2: string = 'Frassier';
@@ -21,4 +22,8 @@ export class StudentList {
   public promo2: number = 4;
   public inscription2: Date = new Date(2025, 8, 3);
   public prix2: number = 630;
+
+  public onDelete() {
+    this.hidden1 = true;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, input} from '@angular/core';
+import { Component, input, output} from '@angular/core';
 import { UpperCasePipe, LowerCasePipe, DatePipe} from '@angular/common';
 
 @Component({
@@ -14,4 +14,6 @@ export class StudentCard {
   public promo = input<number>();
   public inscription = input<Date>();
   public prix = input<number>();
+
+  public remove = output<void>();
 }

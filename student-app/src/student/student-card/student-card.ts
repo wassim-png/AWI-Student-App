@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input} from '@angular/core';
 import { UpperCasePipe, LowerCasePipe, DatePipe} from '@angular/common';
 
 @Component({
@@ -8,10 +8,10 @@ import { UpperCasePipe, LowerCasePipe, DatePipe} from '@angular/common';
   styleUrl: './student-card.css'
 })
 export class StudentCard {
-  public firstname: string = 'Alice';
-  public name: string = 'Demers';
-  public filiere: string = 'DaMS';
-  public promo: number = 3;
-  public inscription: Date = new Date(2025, 8, 3);
-  public prix: number = 628;
+  public firstname = input<string>();
+  public name = input<string>();
+  public filiere = input<string>();
+  public promo = input<number>();
+  public inscription = input<Date>();
+  public prix = input<number>();
 }

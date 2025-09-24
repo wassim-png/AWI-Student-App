@@ -1,5 +1,6 @@
 import { Component, input, output, Type} from '@angular/core';
 import { UpperCasePipe, LowerCasePipe, DatePipe} from '@angular/common';
+import { StudentDto } from '../types/student-dto';
 
 @Component({
   selector: 'app-student-card',
@@ -8,29 +9,18 @@ import { UpperCasePipe, LowerCasePipe, DatePipe} from '@angular/common';
   styleUrl: './student-card.css'
 })
 export class StudentCard {
-  public firstname = input<string>();
-  public name = input<string>();
-  public filiere = input<string>();
-  public promo = input<number>();
-  public inscription = input<Date>();
-  public prix = input<number>();
-
-  public remove = output<void>();
-
-  public getType(): string {
-    const inscription = this.inscription();
-    if(!inscription) { return "" }
-    const annee = inscription.getFullYear();
-
-    if (annee < 2023) {
-      return "alumni";
-    }
-    else if (annee <= 2024) {
-      return "étudiant"
-    }
-    else {
-      return "nouvel inscrit"
-    }
-  }
+  public student = input<StudentDto>();
+  public remove = output<number>();
   
+  public getTypeEleve(): string {
+    var typeEleve = "";
+    if (this.student()) {
+      let st = this.student()!;
+      if (st.inscription.getFullYear() < 2023) { typeEleve = "alumni" }
+      else if (st.inscription.getFullYear() <= 2024) { typeEleve = "étudiant" }
+      else { typeEleve = "nouvel inscrit" }
+    }
+    return typeEleve
+  }
 }
+  

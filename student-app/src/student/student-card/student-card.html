@@ -1,7 +1,7 @@
-<p>Type élève : {{ getType() }}</p>
-<p>Nom : {{ firstname() }} {{ name() | uppercase }}</p>
-<p>inscrit le {{ inscription() | date:'longDate':'':'fr-FR' }}</p>
-<p>payé {{ prix() }} €</p>
-<p>Promo : {{ filiere() }} {{ promo() }}</p>
-<button (click)="remove.emit()">Supprimer</button>
+<p>Type élève : {{ getTypeEleve() }}</p>
+<p>Nom : {{ student()?.firstname }} {{ student()?.name| uppercase }}</p>
+<p>inscrit le {{ student()?.inscription| date:'longDate':'':'fr-FR' }}</p>
+<p>payé {{ student()?.prix }} €</p>
+<p>Promo : {{ student()?.filiere }} {{ student()?.promo }}</p>
+<button (click)="remove.emit(student()?.id!)">Supprimer</button>
 

@@ -1,10 +1,14 @@
-@for (student of students; track student.id) {
-    @if (!student.hidden){
+<div class="students-container">
+  <h1 class="students-title">Liste des Étudiants</h1>
+  
+  <div class="students-grid">
+    @for (student of students; track student.id) {
+      @if (!student.hidden) {
         <app-student-card
-        [student]="students[student.id!]"
-        (remove)="onDelete(student.id!)"
-        [hidden]="student.hidden"
+          [student]="students[student.id!]"
+          (remove)="onDelete(student.id!)"
         />
+      }
     }
-}
-
+  </div>
+</div>

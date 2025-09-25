@@ -1,10 +1,36 @@
-<p>Type élève : {{ getTypeEleve() }}</p>
-<p>Nom : {{ student()?.firstname }} {{ student()?.name| uppercase }}</p>
-<p>inscrit le {{ student()?.inscription| date:'longDate':'':'fr-FR' }}</p>
-<p>payé {{ student()?.prix }} €</p>
-<p>Promo : {{ student()?.filiere }} {{ student()?.promo }}
-@if (isFinalYear()) {
-    <span class="final-year-badge">🎓 Dernière année</span>
-}</p>
-<button (click)="remove.emit(student()?.id!)">Supprimer</button>
+<div class="card-header">
+  <h3 class="student-name">
+    {{ student()?.firstname }} {{ student()?.name | uppercase }}
+  </h3>
+  <span [class]="'type-eleve type-' + getTypeEleve()">
+    {{ getTypeEleve() }}
+  </span>
+</div>
 
+<div class="card-body">
+  <div class="info-line">
+    <span class="info-label">Date d'inscription :</span>
+    <span class="info-value">{{ student()?.inscription | date:'d MMMM yyyy':'':'fr-FR' }}</span>
+  </div>
+  
+  <div class="info-line">
+    <span class="info-label">Formation :</span>
+    <span class="info-value">
+      {{ student()?.filiere }} - {{ student()?.promo }}ème année
+      @if (isFinalYear()) {
+        <span class="final-year-badge">Dernière année</span>
+      }
+    </span>
+  </div>
+  
+  <div class="info-line">
+    <span class="info-label">Montant payé :</span>
+    <span class="info-value prix">{{ student()?.prix }} €</span>
+  </div>
+</div>
+
+<div class="card-footer">
+  <button class="btn-delete" (click)="remove.emit(student()?.id!)">
+    SUPPRIMER
+  </button>
+</div>

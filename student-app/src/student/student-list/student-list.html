@@ -10,7 +10,7 @@
       @if (!student.hidden) {
         <app-student-card
           [student]="student"
-          (remove)="onDelete(student.id!)"
+          (remove)="deleteStudent(student.id!)"
         />
       }
     }

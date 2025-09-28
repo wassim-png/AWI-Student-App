@@ -23,20 +23,27 @@ export class StudentList {
     { id: 3, firstname: 'Yanis', name: 'Niaussat ', filiere: 'DaMS', promo: 5, inscription: new Date(2021, 8, 5), prix: 370, hidden: false }
   ])
 
-  public studentsCount = computed(() => this.students().length)
+  private nextId = signal(4);
+
+  public studentsCount = computed(() => this.students().length) 
 
   public addStudent(firstname_input: string, name_input: string, filiere_input: string, promo_input: number, prix_input: number) {
     const new_student: StudentDto = {
-      id: this.students().length, firstname: firstname_input, name: name_input, filiere: filiere_input,
+      id: this.nextId(), firstname: firstname_input, name: name_input, filiere: filiere_input,
       promo: promo_input, inscription: new Date(), prix: prix_input, hidden: false
     } 
     this.students.update(list => [...list, new_student]);
+    this.nextId.update(id => id + 1);
   }
 
-  public onDelete(id: number) {
+  public deleteStudent(id: number) {
+    this.students.update(list => list.filter(student => student.id !== id));
+  }
+
+/*   public onDelete(id: number) {
     const student = this.students().find(f => f.id === id);
     if (student) {
       student.hidden = true;
     }
-  }
+  } */
 }

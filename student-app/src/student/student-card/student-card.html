@@ -1,6 +1,6 @@
 <div class="card-header">
   <h3 class="student-name">
-    {{ student()?.firstname }} {{ student()?.name | uppercase }} ID : {{ student()?.id }}
+    {{ student()?.firstname }} {{ student()?.name | uppercase }} <!-- ID : {{ student()?.id }} -->
   </h3>
   <span [class]="'type-eleve type-' + getTypeEleve()">
     {{ getTypeEleve() }}

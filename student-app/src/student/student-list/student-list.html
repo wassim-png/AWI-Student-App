@@ -3,25 +3,25 @@
 <div class="students-container">
   <h1 class="students-title">Liste des Étudiants</h1>
 
-  <p>Vous avez {{ studentsCount() }} éléments dans la liste</p>
+  <p>Vous avez {{ svc.students().length }} éléments dans la liste</p>
   
   <div class="students-grid">
-    @for (student of students(); track student.id) {
-      @if (!student.hidden) {
-        <app-student-card
-          [student]="student"
-          (remove)="deleteStudent(student.id!)"
-        />
+    @for (s of svc.students(); track s.id) {
+      <app-student-card
+        [student]="s"
+        (remove)="remove(s.id!)"
+        (promote)="promote(s.id!)"
+      />
       }
-    }
   </div>
 </div>
-<input #firstNameInput type="text" placeholder="FirstName">
-<input #nameInput type="text" placeholder="Nom">
-<input #filiereInput type="text" placeholder="Filière">
-<input #promoInput type="number" placeholder="Promo">
-<input #prixInput type="number" placeholder="Prix">
-<button (click)="addStudent(firstNameInput.value, nameInput.value, filiereInput.value, +promoInput.value, +prixInput.value)">
- Ajouter
-</button>
+
+  <input #firstNameInput type="text" placeholder="FirstName">
+  <input #nameInput type="text" placeholder="Nom">
+  <input #filiereInput type="text" placeholder="Filière">
+  <input #promoInput type="number" placeholder="Promo">
+  <input #prixInput type="number" placeholder="Prix">
+  <button (click)="add(firstNameInput.value, nameInput.value, filiereInput.value, +promoInput.value, +prixInput.value)">
+  Ajouter
+  </button>
 

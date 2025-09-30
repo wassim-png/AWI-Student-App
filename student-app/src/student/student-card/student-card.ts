@@ -11,6 +11,7 @@ import { StudentDto } from '../types/student-dto';
 export class StudentCard {
   public student = input<StudentDto>();
   public remove = output<number>();
+  public promote = output<number>();
   
   public getTypeEleve(): string {
     var typeEleve = "";

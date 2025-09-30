@@ -156,6 +156,22 @@
   letter-spacing: 0.5px;
 }
 
+/* Bouton supprimer bien visible */
+.btn-promote {
+  background-color: #073807;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  width: 100%;
+  transition: background-color 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .btn-delete:hover {
   background-color: #c0392b;
 }
@@ -171,4 +187,21 @@
 
 .highlight .btn-delete:hover {
   background-color: #b71c1c;
+}
+
+.btn-promote:hover {
+  background-color: #073807;
+}
+
+.btn-promote:active {
+  transform: scale(0.98);
+}
+
+/* Bouton pour les cartes highlight */
+.highlight .btn-delete {
+  background-color: #073807;
+}
+
+.highlight .btn-delete:hover {
+  background-color: #073807;
 }

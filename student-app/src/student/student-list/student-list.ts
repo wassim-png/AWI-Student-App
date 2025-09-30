@@ -1,4 +1,4 @@
-import { Component, WritableSignal, signal, computed} from '@angular/core';
+import { Component, WritableSignal, signal, computed, effect} from '@angular/core';
 import { StudentCard } from '../student-card/student-card';
 import { StudentDto } from '../types/student-dto';
 
@@ -25,7 +25,16 @@ export class StudentList {
 
   private nextId = signal(4);
 
+  private lastStudent = signal<StudentDto | null>(null);
+
   public studentsCount = computed(() => this.students().length) 
+
+  constructor() {
+    effect(() => {
+      console.log("Nombre d'étudiants et étudiantes : ", this.studentsCount());
+      console.log("Étudiant ou étudiantes supprimée : ", this.lastStudent()?.firstname)
+    });
+  }
 
   public addStudent(firstname_input: string, name_input: string, filiere_input: string, promo_input: number, prix_input: number) {
     const new_student: StudentDto = {
@@ -37,6 +46,10 @@ export class StudentList {
   }
 
   public deleteStudent(id: number) {
+    const student = this.students().find(f => f.id === id);
+    if (student) {
+      this.lastStudent.set(student);
+    }
     this.students.update(list => list.filter(student => student.id !== id));
   }
 

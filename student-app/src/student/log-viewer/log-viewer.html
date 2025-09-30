@@ -1,0 +1,9 @@
+<ul>
+    <strong>LOG : </strong>
+    @for (s of svc.entries(); track s.id){
+        <li style="margin:.25rem 0;">
+            <strong>{{ s.message }} ({{ s.scope }}) --- {{ s.ts }}</strong>
+        </li> 
+    }
+    <button (click)="reset()">RESET</button>
+</ul>

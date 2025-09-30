@@ -10,7 +10,6 @@
   gap: 20px;
   padding: 30px;
   background-color: #f8f9fa;
-  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

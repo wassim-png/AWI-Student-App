@@ -6,5 +6,6 @@ export interface StudentDto {
     promo: number, 
     inscription: Date,
     prix: number, 
-    hidden: boolean
 }
+
+type StudentPartial = Partial<StudentDto> 

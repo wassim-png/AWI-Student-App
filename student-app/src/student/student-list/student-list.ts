@@ -1,22 +1,40 @@
-import { Component, WritableSignal, signal, computed, effect} from '@angular/core';
+import { Component, WritableSignal, signal, computed, effect, ChangeDetectionStrategy, inject} from '@angular/core';
 import { StudentCard } from '../student-card/student-card';
 import { StudentDto } from '../types/student-dto';
+import { StudentService } from '../services/student-service';
 
 @Component({
   selector: 'app-student-list',
   imports: [StudentCard],
   templateUrl: './student-list.html',
-  styleUrl: './student-list.css'
+  styleUrl: './student-list.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StudentList {
-/*   public students: StudentDto[] = [
-    { id: 0, firstname: 'Wassim', name: 'Ben Nacef', filiere: 'DaMS', promo: 4, inscription: new Date(2022, 8, 15), prix: 40, hidden: false}, 
-    { id: 1, firstname: 'Clement', name: 'Frassier', filiere: 'DaMS', promo: 5, inscription: new Date(2024, 8, 3), prix: 630, hidden: false},
-    { id: 2, firstname: 'Syrine', name: 'Benali', filiere: 'DaMS', promo: 3, inscription: new Date(2025, 8, 5), prix: 420, hidden: false },
-    { id: 3, firstname: 'Yanis', name: 'Niaussat ', filiere: 'DaMS', promo: 5, inscription: new Date(2021, 8, 5), prix: 370, hidden: false }
-  ] */
 
-  public students: WritableSignal<StudentDto[]> = signal<StudentDto[]>([
+  readonly svc = inject(StudentService);
+
+  add(firstname_input: string, name_input: string, filiere_input: string, promo_input: number, prix_input: number): void {
+/*     if (!firstname_input || !name_input || !filiere_input) { */
+        const new_student: StudentDto = {
+          id: Date.now(), firstname: firstname_input, name: name_input, filiere: filiere_input,
+          promo: promo_input, inscription: new Date(), prix: prix_input
+        }
+        return this.svc.add(new_student)
+/*     } */
+  }
+
+  promote(id: number): void {
+    const s = this.svc.findById(id)
+    if (s) this.svc.update({id, promo: s.promo + 1})
+  }
+  
+  remove(id: number): void {
+    this.svc.remove(id)
+  } 
+
+
+/*   public students: WritableSignal<StudentDto[]> = signal<StudentDto[]>([
     { id: 0, firstname: 'Wassim', name: 'Ben Nacef', filiere: 'DaMS', promo: 4, inscription: new Date(2022, 8, 15), prix: 40, hidden: false}, 
     { id: 1, firstname: 'Clement', name: 'Frassier', filiere: 'DaMS', promo: 5, inscription: new Date(2024, 8, 3), prix: 630, hidden: false},
     { id: 2, firstname: 'Syrine', name: 'Benali', filiere: 'DaMS', promo: 3, inscription: new Date(2025, 8, 5), prix: 420, hidden: false },
@@ -58,5 +76,5 @@ export class StudentList {
     if (student) {
       student.hidden = true;
     }
-  } */
+  } */ 
 }

@@ -1,10 +1,11 @@
 import { Component, input, output, Type} from '@angular/core';
 import { UpperCasePipe, LowerCasePipe, DatePipe} from '@angular/common';
 import { StudentDto } from '../types/student-dto';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-student-card',
-  imports: [UpperCasePipe, LowerCasePipe, DatePipe],
+  imports: [UpperCasePipe, LowerCasePipe, DatePipe, RouterLink],
   templateUrl: './student-card.html',
   styleUrl: './student-card.css'
 })
@@ -12,6 +13,7 @@ export class StudentCard {
   public student = input<StudentDto>();
   public remove = output<number>();
   public promote = output<number>();
+  
   
   public getTypeEleve(): string {
     var typeEleve = "";

@@ -3,10 +3,12 @@ import { StudentCard } from '../student-card/student-card';
 import { StudentDto } from '../types/student-dto';
 import { StudentService } from '../services/student-service';
 import { LoggingService } from '../services/logging-service';
+import { LogViewer } from "../log-viewer/log-viewer";
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-student-list',
-  imports: [StudentCard],
+  imports: [StudentCard, LogViewer, RouterLink],
   templateUrl: './student-list.html',
   styleUrl: './student-list.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -39,6 +41,10 @@ export class StudentList {
     this.svc.remove(id)
     this.logging.log('Étudiant supprimé', 'StudentList')
   } 
+
+  detail(id: number): void {
+    
+  }
 
 
 /*   public students: WritableSignal<StudentDto[]> = signal<StudentDto[]>([

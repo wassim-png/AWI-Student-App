@@ -1,0 +1,17 @@
+<h2>Posts</h2>
+@if (posts.isLoading()) {
+ <p>Loading…</p>
+}
+@if (posts.error()) {
+ <p class="error">Error while loading posts</p>
+}
+@if (posts.hasValue()) {
+ <ul>
+ @for (p of posts.value(); track p.id) {
+ <li>
+ <strong>{{ p.title }}</strong><br>
+ {{ p.body }}
+ </li>
+ }
+ </ul>
+}
